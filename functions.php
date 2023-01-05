@@ -12,6 +12,10 @@ function init_template() {
 
     );
 
+    //problema tamany imatges
+    add_filter( 'big_image_size_threshold', '__return_false' );
+
+
 }
 
 add_action( 'after_setup_theme', 'init_template');
