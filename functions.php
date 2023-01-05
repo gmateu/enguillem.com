@@ -5,6 +5,13 @@ function init_template() {
     add_theme_support('post-thumbnails');
     add_theme_support( 'title-tag' );
 
+    register_nav_menus( 
+        array(
+            'top_menu' => 'Menú Principal'
+        )
+
+    );
+
 }
 
 add_action( 'after_setup_theme', 'init_template');
@@ -21,3 +28,18 @@ function assets(){
 }
 
 add_action( 'wp_enqueue_scripts', 'assets' );
+
+function sidebar(){
+    register_sidebar(
+        array(
+            'name' => 'Pie de página',
+            'id' => 'footer',
+            'description' =>'Zona de widgets para pie de página',
+            'before_title' =>'<p>',
+            'after_title' =>'</p>',
+            'before_widget' =>'<div id="%1$s" class="%2$s">',
+            'after_widget' =>'</div>'
+        )
+    );
+}
+add_action( 'widgets_init', 'sidebar');
