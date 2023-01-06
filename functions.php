@@ -47,3 +47,27 @@ function sidebar(){
     );
 }
 add_action( 'widgets_init', 'sidebar');
+
+function tutoriales_type(){
+    $lables=array(
+        'name' => 'Tutoriales',
+        'singular_name' => 'Tutorial',
+        'manu_name' => 'Tutoriales',
+    );
+    $args = array(
+        'label' =>  'Tutoriales',
+        'description' => 'Tutoriales Varios',
+        'labels' => $lables,
+        'supports' => array('title', 'editor','thumbnail', 'revisions'),
+        'public' => true,
+        'show_in_menu' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-cart',
+        'can_export' => true,
+        'publicy_queryable' => true,
+        'rewrite' => true,
+        'show_in_rest' => true
+    );
+    register_post_type( 'tutorial', $args);
+}
+add_action( 'init', 'tutoriales_type' );
