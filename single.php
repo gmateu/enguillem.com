@@ -15,6 +15,10 @@
                 </div>
             </div>
     <?php
+        //archivo de navegación
+        get_template_part( 'template-parts/post', 'navigation' );
+
+
         } 
     }
     ?>
