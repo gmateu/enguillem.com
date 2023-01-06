@@ -62,7 +62,7 @@ function tutoriales_type(){
         'public' => true,
         'show_in_menu' => true,
         'menu_position' => 5,
-        'menu_icon' => 'dashicons-cart',
+        'menu_icon' => 'dashicons-welcome-learn-more',
         'can_export' => true,
         'publicy_queryable' => true,
         'rewrite' => true,
