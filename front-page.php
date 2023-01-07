@@ -18,8 +18,8 @@
         <?php
             $args = array( 
                 'post_type' => 'tutorial',
-                'post_per_page' => -1,
-                'order' => 'ASC',
+                'post_per_page' => 4,
+                'order' => 'DESC',
                 'order_by' => 'date'
 
             );
@@ -28,7 +28,7 @@
                 while($tutoriales->have_posts()) {
                     $tutoriales->the_post();
                 ?>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <figure>
                         <?php the_post_thumbnail('large');?>
                     </figure>
