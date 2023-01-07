@@ -7,8 +7,8 @@
     ?>
             <h1 class="my-3"><?php the_title( );?></h1>
             <div class="row">
-                <div class="col-12">
-                    <?php the_post_thumbnail( 'large' );?>
+                <div class="col-12 text-center">
+                    <?php the_post_thumbnail( 'medium' );?>
                 </div>
                 <div class="col-12">
                     <?php the_content(  );?>
@@ -16,11 +16,19 @@
             </div>
             <?php
             //llista de tutorials 
+            $taxonomy = get_the_terms( get_the_ID(), 'categoria-tutoriales' );
             $args = array(
                 'post_type' => 'tutorial',
                 'post_per_page' =>4,
                 'order' => 'DESC',
                 'order_by' => 'date_published',
+                'tax_query' => array( 
+                    array( 
+                        'taxonomy' => 'categoria-tutoriales',
+                        'field' => 'slug',
+                        'terms' => $taxonomy[0]->slug
+                        )
+                )
             );
             $tutoriales = new WP_Query( $args);
             if($tutoriales->have_posts()){
@@ -32,6 +40,8 @@
                 <?php 
                     while ( $tutoriales->have_posts() ){
                         $tutoriales->the_post();
+                        //serarch tutorials by taxonomy
+
                         ?>
                         <div class="col-3 my-3 text-center">
                             <?php the_post_thumbnail( 'thumbnail' ); ?>

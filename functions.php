@@ -71,3 +71,22 @@ function tutoriales_type(){
     register_post_type( 'tutorial', $args);
 }
 add_action( 'init', 'tutoriales_type' );
+
+//taxonomy
+
+function pgRegisterTax(){
+    $args=array(
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => 'Categorias de Tutoriales',
+            'singular_name' => 'Categoria de Tutoriales'
+        ),
+        'show_in_nav_menu' => true,
+        'show_admin_column' => true,
+        'rewrite' => array('slug'=>'categoria-tutoriales')
+    );
+
+    register_taxonomy( 'categoria-tutoriales', array('tutorial'), $args );
+}
+
+add_action( 'init', 'pgRegisterTax' );
