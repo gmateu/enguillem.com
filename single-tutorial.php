@@ -53,6 +53,8 @@
                         </div>
                         <?php
                 }?>
+                </div>
+                
               </div>
             <?php
             }
