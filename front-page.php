@@ -14,7 +14,28 @@
     ?>
     <div class="lista-tutoriales">
         <h2 class="text-center">Tutoriales</h2>
-        <div class="row">
+        <div class="row my-3">
+            <div class="col-12">
+                    <?php
+                    $terms = get_terms('categoria-tutoriales',array('hide_empty'=>true));
+                    //echo "Aaaa".var_dump($terms);
+                    ?>
+                <select class="form-control" name="categoria-tutoriales" id="categoria-tutoriales">
+                    <option value="">Todas las categorias</option>
+                    <?php
+                        
+                    ?>
+                    <?php
+                        foreach ($terms as $term){
+                            ?>
+                                <option value="<?=$term->slug?>"><?=$term->name?></option>
+                            <?php
+                        }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div id="resultado-tutoriales" class="row">
         <?php
             $args = array( 
                 'post_type' => 'tutorial',

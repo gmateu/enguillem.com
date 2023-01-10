@@ -29,6 +29,11 @@ function assets(){
     wp_enqueue_script('boostraps', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('jquery','popper'),'4.4.1', true);
     wp_enqueue_script('custom', get_template_directory_uri().'/assets/js/custom.js', '', '1.0', true);
 
+    //ajax
+    wp_localize_script( 'custom', 'pg', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+    ));
+
 }
 
 add_action( 'wp_enqueue_scripts', 'assets' );
@@ -90,3 +95,39 @@ function pgRegisterTax(){
 }
 
 add_action( 'init', 'pgRegisterTax' );
+
+function filtreTutorials(){
+    $args=array(
+        'post_type' => 'tutorial',
+        'posts_per_page' => -1,
+        'order' => 'ASC',
+        'orderby' =>'title'
+    );
+    if ($_POST['categoria']){
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'categoria-tutoriales',
+                'field' =>'slug',
+                'terms' => $_POST['categoria']
+            )
+        );
+    }
+    $tutoriales=new WP_Query($args);
+    if($tutoriales->have_posts()){
+        $return=array();
+        while($tutoriales->have_posts()){
+            $tutoriales->the_post();
+            $return[] = array(
+                'imagen' => get_the_post_thumbnail(get_the_ID(), 'large'),
+                'link' => get_permalink(),
+                'titulo' => get_the_title()
+            );
+        }
+        wp_send_json( $return );
+    }
+
+}
+add_action('wp_ajax_nopriv_filtroProductos','filtreTutorials');
+add_action('wp_ajax_filtroProductos','filtreTutorials');
+
+
