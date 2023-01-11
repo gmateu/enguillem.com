@@ -21,18 +21,23 @@ function init_template() {
 add_action( 'after_setup_theme', 'init_template');
 
 function assets(){
-    wp_register_style('bootstrap','https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', '', '4.4.1','all');
-    wp_register_style('montserrat', 'https://fonts.googleapis.com/css?family=Montserrat&display=swap','','1.0', 'all');
-    wp_enqueue_style('estilos', get_stylesheet_uri(), array('bootstrap','montserrat'),'1.0', 'all');
+    wp_register_style('bootstrap','https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',false,'4.4.1','all');
+    wp_register_style('montserrat','https://fonts.googleapis.com/css?family=Montserrat&display=swap',false,'','all');
+    wp_enqueue_style('main-style', get_stylesheet_uri(), array('bootstrap','montserrat'),'1.0','all');
 
-    wp_register_script('popper','https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js','','1.16.0', true);
-    wp_enqueue_script('boostraps', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('jquery','popper'),'4.4.1', true);
-    wp_enqueue_script('custom', get_template_directory_uri().'/assets/js/custom.js', '', '1.0', true);
+    wp_register_script( 'popper', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', false, true );
+    wp_enqueue_script( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('jquery','popper'), true);
+
+    wp_enqueue_script( 'custom', get_template_directory_uri()."/assets/js/custom.js", false,"1.1", true );
 
     //ajax
+    //wp_localize_script('custom', 'pg', array('ajaxurl' => admin_url('admin-ajax.php')));
+
     wp_localize_script( 'custom', 'pg', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-    ));
+        'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+        'nonce'  => wp_create_nonce( 'my-ajax-nonce' ),
+        'action' => 'event-list'
+    ) );
 
 }
 
@@ -126,8 +131,9 @@ function filtreTutorials(){
         wp_send_json( $return );
     }
 
+
 }
-add_action('wp_ajax_nopriv_filtroProductos','filtreTutorials');
-add_action('wp_ajax_filtroProductos','filtreTutorials');
+add_action('wp_ajax_nopriv_filtreTutorials','filtreTutorials');
+add_action('wp_ajax_filtreTutorials','filtreTutorials');
 
 

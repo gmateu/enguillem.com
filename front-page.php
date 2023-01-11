@@ -35,7 +35,7 @@
                 </select>
             </div>
         </div>
-        <div id="resultado-tutoriales" class="row">
+        <div id="resultado" class="row">
         <?php
             $args = array( 
                 'post_type' => 'tutorial',
