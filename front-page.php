@@ -65,6 +65,12 @@
         ?>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Novedades</h2>
+        </div>
+        <div id="resultado-novedades"></div>
+    </div>
 </main>
 
 
