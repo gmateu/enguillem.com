@@ -38,6 +38,11 @@ function assets(){
         'apiurl'    =>home_url( 'wp-json/pg/v1')
     ) );
 
+  wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
+  wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'));
+  wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'));
+
+
 }
 
 add_action( 'wp_enqueue_scripts', 'assets' );
