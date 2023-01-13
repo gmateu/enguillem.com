@@ -1,0 +1,28 @@
+{
+  "name": "enguillem.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmateu/enguillem.com.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gmateu/enguillem.com/issues"
+  },
+  "homepage": "https://github.com/gmateu/enguillem.com#readme",
+  "dependencies": {
+    "@glidejs/glide": "^3.6.0",
+    "@wordpress/scripts": "^25.1.0",
+    "axios": "^1.2.2",
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^25.1.0"
+  }
+}
