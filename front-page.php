@@ -50,9 +50,7 @@
                     $tutoriales->the_post();
                 ?>
                 <div class="col-md-3">
-                    <figure>
                         <?php the_post_thumbnail('large');?>
-                    </figure>
                     <h4 class='my-3 text-center'>
                         <a href="<?php the_permalink();?>">
                             <?php the_title();?>
