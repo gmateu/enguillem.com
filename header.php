@@ -9,7 +9,7 @@
 <body>
 
 <header>
-    <div class="container">
+    <!--<div class="container">
         <div class="row align-items-center">
             <div class="col-4">
                 <a href="/">
@@ -29,5 +29,34 @@
                 </nav>
             </div>
         </div>
-    </div>
+    </div>-->
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <a class="navbar-brand" href="home">
+        <img src="<?php echo get_template_directory_uri()?>/assets/img/logo.png" alt="logo">
+        </a>
+
+        <button class="navbar-toggler" 
+                type="button" 
+                data-toggle="collapse" 
+                data-target="#navbarNav" 
+                aria-controls="navbarNav" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <?php
+            wp_nav_menu( array(
+                'theme_location'    => 'top_menu',
+                'menu_class'    => 'menu-principal',
+                'depth'             => 3,
+                'container'         => 'div',
+                'container_class'   => 'collapse navbar-collapse',
+                'container_id'      => 'navbarNav',
+                'menu_class'        => 'nav navbar-nav',
+                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                'walker'            => new WP_Bootstrap_Navwalker(),
+            ) );
+        ?>
+        
+    </nav>
 </header>

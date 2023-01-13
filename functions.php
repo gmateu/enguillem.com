@@ -1,5 +1,5 @@
 <?php
-
+require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
 
 function init_template() {
     add_theme_support('post-thumbnails');
