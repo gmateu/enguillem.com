@@ -97,7 +97,8 @@ function cursos_type(){
         'label' =>  'Cursos',
         'description' => 'Cursos Varios',
         'labels' => $lables,
-        'supports' => array('title', 'editor','thumbnail', 'revisions'),
+        'hierarchical' => true,
+        'supports' => array('title', 'editor','thumbnail', 'revisions','page-attributes'),
         'public' => true,
         'show_in_menu' => true,
         'menu_position' => 6,
@@ -110,6 +111,31 @@ function cursos_type(){
     register_post_type( 'curso', $args);
 }
 add_action( 'init', 'cursos_type' );
+
+function lecciones_type(){
+    $lables=array(
+        'name' => 'Lecciones',
+        'singular_name' => 'Lección',
+        'manu_name' => 'Lecciones',
+    );
+    $args = array(
+        'label' =>  'Lecciones',
+        'description' => 'Lecciones Varias',
+        'labels' => $lables,
+        'hierarchical' => false,
+        'supports' => array('title', 'editor','thumbnail', 'revisions','page-attributes'),
+        'public' => true,
+        'show_in_menu' => true,
+        'menu_position' => 7,
+        'menu_icon' => 'dashicons-welcome-learn-more',
+        'can_export' => true,
+        'publicy_queryable' => true,
+        'rewrite' => true,
+        'show_in_rest' => true
+    );
+    register_post_type( 'leccion', $args);
+}
+add_action( 'init', 'lecciones_type' );
 
 
 //taxonomy
