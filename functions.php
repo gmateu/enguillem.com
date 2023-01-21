@@ -86,6 +86,32 @@ function tutoriales_type(){
 }
 add_action( 'init', 'tutoriales_type' );
 
+
+function cursos_type(){
+    $lables=array(
+        'name' => 'Cursos',
+        'singular_name' => 'Curso',
+        'manu_name' => 'Cursos',
+    );
+    $args = array(
+        'label' =>  'Cursos',
+        'description' => 'Cursos Varios',
+        'labels' => $lables,
+        'supports' => array('title', 'editor','thumbnail', 'revisions'),
+        'public' => true,
+        'show_in_menu' => true,
+        'menu_position' => 6,
+        'menu_icon' => 'dashicons-welcome-learn-more',
+        'can_export' => true,
+        'publicy_queryable' => true,
+        'rewrite' => true,
+        'show_in_rest' => true
+    );
+    register_post_type( 'curso', $args);
+}
+add_action( 'init', 'cursos_type' );
+
+
 //taxonomy
 
 function pgRegisterTax(){
