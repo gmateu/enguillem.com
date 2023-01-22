@@ -62,16 +62,28 @@ function sidebar(){
 }
 add_action( 'widgets_init', 'sidebar');
 
-function tutoriales_type(){
-    $lables=array(
-        'name' => 'Tutoriales',
-        'singular_name' => 'Tutorial',
-        'manu_name' => 'Tutoriales',
+function setLabels($singular, $plural,$masculi){
+        $todos="Todos Los";
+        if(!$masculi){
+            $todos="Todas Las";
+        }
+       $labels=array(
+        'name' => $plural,
+        'singular_name' => $singular,
+        'menu_name' => $plural,
+        'add_new_item' => 'Añadir nuevo '.$singular,
+        'edit_item' => 'Editar '.$singular,
+        'all_items' => $todos.' '.$plural
     );
+    return $labels;
+}
+
+function tutoriales_type(){
+    $labels=setLabels('Tutorial', 'Tutoriales',true);
     $args = array(
         'label' =>  'Tutoriales',
         'description' => 'Tutoriales Varios',
-        'labels' => $lables,
+        'labels' => $labels,
         'supports' => array('title', 'editor','thumbnail', 'revisions'),
         'public' => true,
         'show_in_menu' => true,
@@ -88,11 +100,7 @@ add_action( 'init', 'tutoriales_type' );
 
 
 function cursos_type(){
-    $lables=array(
-        'name' => 'Cursos',
-        'singular_name' => 'Curso',
-        'manu_name' => 'Cursos',
-    );
+    $lables=setLabels('Curso', 'Cursos',true);
     $args = array(
         'label' =>  'Cursos',
         'description' => 'Cursos Varios',
@@ -113,11 +121,7 @@ function cursos_type(){
 add_action( 'init', 'cursos_type' );
 
 function lecciones_type(){
-    $lables=array(
-        'name' => 'Lecciones',
-        'singular_name' => 'Lección',
-        'manu_name' => 'Lecciones',
-    );
+    $lables=setLabels('Lección', 'Lecciones',false);
     $args = array(
         'label' =>  'Lecciones',
         'description' => 'Lecciones Varias',
@@ -136,6 +140,20 @@ function lecciones_type(){
     register_post_type( 'leccion', $args);
 }
 add_action( 'init', 'lecciones_type' );
+
+//relacionar ctp
+function cpt_parent_meta_box() {
+	add_meta_box( 'lesson-parent', 'Curso', 'cpt_lesson_parent_meta_box', 'leccion', 'side', 'high' );
+}
+add_action( 'add_meta_boxes', 'cpt_parent_meta_box' );
+function cpt_lesson_parent_meta_box( $post ) {
+	$post_type_object = get_post_type_object( $post->post_type );
+	$pages = wp_dropdown_pages( array( 'post_type' => 'curso', 'selected' => $post->post_parent, 'name' => 'parent_id',
+                                 'show_option_none' => __( '(no parent)' ), 'sort_column'=> 'menu_order, post_title', 'echo' => 0 ) );
+if ( ! empty( $pages ) ) {
+		echo $pages;
+	}
+}
 
 
 //taxonomy

@@ -39,7 +39,7 @@
         <?php
             $args = array( 
                 'post_type' => 'tutorial',
-                'post_per_page' => 4,
+                'posts_per_page' => 4,
                 'order' => 'DESC',
                 'order_by' => 'date'
 
@@ -61,6 +61,41 @@
                 }
             }
         ?>
+        </div>
+    </div>
+    <div class="lista-curos">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">Cursos</h2>
+            </div>
+        </div>
+        <div id="resultado-cursos" class="row">
+            <?php
+                $args = array( 
+                    'post_type' => 'curso',
+                    'posts_per_page' => 4,
+                    'order' => 'DESC',
+                    'order_by' => 'date'
+    
+                );
+                $cursos = new WP_Query($args);
+                if($cursos->have_posts()) {
+                    while($cursos->have_posts()){
+                        $cursos->the_post(  );
+                        ?>
+                    <div class="col-md-3">
+                        <?php the_post_thumbnail('large');?>
+                    <h4 class='my-3 text-center'>
+                        <a href="<?php the_permalink();?>">
+                            <?php the_title();?>
+                        </a>
+                    </h4>
+                </div>
+                    <?php
+                    }
+                }
+    
+            ?>
         </div>
     </div>
     <div class="row">
