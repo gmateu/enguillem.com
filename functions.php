@@ -135,7 +135,8 @@ function lecciones_type(){
         'can_export' => true,
         'publicy_queryable' => true,
         'rewrite' => true,
-        'show_in_rest' => true
+        'show_in_rest' => true,
+        'has_archive' =>true
     );
     register_post_type( 'leccion', $args);
 }
