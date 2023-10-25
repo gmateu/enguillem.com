@@ -8,19 +8,21 @@
         $args = array( 
             'post_type' => 'tutorial',
             'post_per_page' => -1,
-            'order' => 'ASC',
-            'order_by' => 'date'
+            'order' => 'DESC',
+            'order_by' => 'date',
+            'nopaging' => true
     
         );
         $tutoriales = new WP_Query($args);
-        if ( $tutoriales->have_posts(  )){
+        
+        //if ( $tutoriales->have_posts(  )){
             while ( $tutoriales->have_posts( ) ){
                 $tutoriales->the_post(  );
         ?>
             <div class="col-md-4">
-                <figure>
+                <!-- <figure>
                     <?php the_post_thumbnail('large');?>
-                </figure>
+                </figure> -->
                 <h4 class='my-3 text-center'>
                     <a href="<?php the_permalink();?>">
                         <?php the_title();?>
@@ -30,7 +32,7 @@
             </div>
         <?php
             } 
-        }
+        //}
         ?>
         </div>
     </div>

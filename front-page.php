@@ -5,7 +5,7 @@
         while ( have_posts( ) ){
             the_post(  );
     ?>
-            <h1 class="my-3"><?php the_title( );?></h1>
+            <h1 class="my-3"><?php //the_title( );?></h1>
             
             <?php the_content(  );?>
     <?php
@@ -13,7 +13,6 @@
     }
     ?>
     <div class="lista-tutoriales">
-        <h2 class="text-center">Tutoriales</h2>
         <div class="row my-3">
             <div class="col-12">
                     <?php
