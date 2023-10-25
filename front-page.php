@@ -62,7 +62,7 @@
         ?>
         </div>
     </div>
-    <div class="lista-curos">
+    <!-- <div class="lista-curos">
         <div class="row">
             <div class="col-12">
                 <h2 class="text-center">Cursos</h2>
@@ -96,13 +96,13 @@
     
             ?>
         </div>
-    </div>
-    <div class="row">
+    </div> -->
+    <!-- <div class="row">
         <div class="col-12">
             <h2 class="text-center">Novedades</h2>
         </div>
         <div id="resultado-novedades"></div>
-    </div>
+    </div> -->
 </main>
 
 
