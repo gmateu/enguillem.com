@@ -20,9 +20,9 @@
                 $tutoriales->the_post(  );
         ?>
             <div class="col-md-4">
-                <!-- <figure>
+                <figure>
                     <?php the_post_thumbnail('large');?>
-                </figure> -->
+                </figure>
                 <h4 class='my-3 text-center'>
                     <a href="<?php the_permalink();?>">
                         <?php the_title();?>
